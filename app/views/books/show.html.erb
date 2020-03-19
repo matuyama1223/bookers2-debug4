@@ -1,40 +1,67 @@
 <div class="container">
-<div class="row">
-	<div class="col-xs-3"> 
+	<div class="row">
+		<div class="col-xs-3"> 
+			<h2>User info</h2>
+			<%= render 'users/profile',user:@user %>
 
-		<h2>User info</h2>
-		<%= render 'users/profile',user:@user %>
+			<h2>New book</h2>
+			<%= render 'books/newform',book:@books%>
 
-		<h2>New book</h2>
-		<%= render 'books/newform',book:@book%>
+		</div>
 
-	</div>
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
 
-	<div class="col-xs-9">
-		<h2>Book detail</h2>
-
-		<table class="table">
+			<table class="table">
 				<tr>
 					<td>
 						<%= link_to (@book.user) do %>
-						<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
-						<%= @book.user.name %>
+							<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+							<%= @book.user.name %>
 						<% end %>
 					</td>
 					<td><%= link_to @book.title, @book %></td>
 					<td><%= @book.body %></td>
 					<% if current_user == @book.user%>
-					<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
-					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
-					<% else %>
-					<td></td>
-					<td></td>
-					<% end %>
+						<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
+						<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 
+					<% end %>
+					<td><i class="fa fa-comment"></i>
+					<a href="#comments"><%= @book.book_comments.count %>コメント</a></td>
+					<% @book.book_comments.each do |book_comment| %>
+				        <li class="comment">
+				            <div class="comment-body bb">
+				                <div class="comment-text">
+				                    <div class="comment-author clearfix">
+				                        <a href="#" class="link-author"><%= book_comment.user.name %></a>
+				                        <span class="comment-meta">
+				                        <span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
+				                        </span>
+				                    </div>
+				                    <div class="comment-entry"><%= book_comment.comment %></div>
+				                </div>
+				            </div>
+				        </li>
+					<% end %>
 				</tr>
 			</table>
-
+			<i class="fa fa-comment"></i>
+					<a href="#comments"><%= @book.book_comments.count %>コメント</a>
+					<div class="comment-list bt style-2" id="comments">
+					    <div class="float-wrapper">
+					        <h2 class="comment-count"><%= @book.book_comments.count %>件コメント</h2>
+					        <%= form_for [@book,@book_comments] do |f| %>
+						    	<div class="row">
+							        <div class="col-sm-12">
+							            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+							        </div>
+							    </div>
+							    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+						  	<% end %>
+					    </div>
+					</div>
+		</div>
 	</div>
-</div>
 </div>
 
