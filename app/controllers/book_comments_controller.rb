@@ -11,11 +11,11 @@ class BookCommentsController < ApplicationController
 
 	# けす
 	def destroy
-		book = Book.find(params[:book_id])
-		comment = current_user.book_comments(paramas)
-		comment.destroy
-		redirect_to book_path(book)
-		
+		book_comment = BookComment.find(params[:id])
+		book_comment.destroy
+		redirect_to request.referer
+		# request.referer	消えて前に戻る
+
 	end
 	def book_commment_params
 		params.require(:book_comment).permit(:comment)

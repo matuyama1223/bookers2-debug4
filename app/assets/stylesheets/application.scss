@@ -32,3 +32,34 @@ body {
 .actions {
 	margin-top:10px;
 }
+
+.example {/*親div*/
+  position: relative;
+  }
+
+.example p {
+  position: absolute;
+  color: white;/*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-size: 4em;/*サイズ2倍*/
+  font-family :Quicksand, sans-serif;/*Google Font*/
+  top: 0;
+  left: 0;
+  }
+
+.example .fa {/*classがfaのアイコンに対して*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;/*余計な隙間を除く*/
+  padding:0;/*余計な隙間を除く*/
+  color: white;/*アイコン色*/
+  font-size: 60px;/*サイズ*/
+  }
+
+.example img {
+  width: 100%;
+  }

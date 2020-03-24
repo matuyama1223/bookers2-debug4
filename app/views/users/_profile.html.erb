@@ -1,17 +1,26 @@
 <table class="table">
-		<tr><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
+	<tr><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
 
-		<tr>
-			<th>name</th>
-			<th><%= user.name %></th>
-		</tr>
+	<tr>
+		<th>name</th>
+		<th><%= user.name %></th>
+	</tr>
 
-		<tr>
-			<th>introduction</th>
-			<th><%= user.introduction %></th>
-		</tr>
+	<tr>
+		<th>introduction</th>
+		<th><%= user.introduction %></th>
+	</tr>
+	<tr>
+		<td><%= link_to user.relationships.count,users_follows_path %>フォロー</td>
+	</tr>
+	<tr>
+		<td><%= link_to user.reverse_of_relationships.count,users_follower_path%>フォロワー</td>
+	</tr>
 </table>
-
 <div class="row">
 	<%= link_to '',edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 </div>
+
+
+
+<%= render 'relationships/follow_button' ,user: user  %>

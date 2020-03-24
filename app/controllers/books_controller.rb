@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def show
   	@book = Book.find(params[:id])
     @books = Book.new
-    @user =@book.user
+    @user = @book.user
     @book_comments = BookComment.new
 
   end
@@ -42,7 +42,7 @@ class BooksController < ApplicationController
   	else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
   		
       render "edit"
-  	end
+    end
   end
 
   def destroy
@@ -57,10 +57,10 @@ class BooksController < ApplicationController
   def book_params
   	params.require(:book).permit(:title, :body)
   end
- def correct_user
-  @book = Book.find(params[:id])
-  if @book.user != current_user
-    redirect_to books_path
+  def correct_user
+    @book = Book.find(params[:id])
+    if @book.user != current_user
+      redirect_to books_path
+    end
   end
- end
 end

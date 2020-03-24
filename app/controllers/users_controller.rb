@@ -25,6 +25,15 @@ class UsersController < ApplicationController
   		render :edit
   	end
   end
+  # user.rbのhas_many :followings, through: :relationships, source: :follow
+  def follows
+    @users = current_user.followings
+  end
+
+  # user.rbの has_many :followers, through: :reverse_of_relationships, source: :user
+  def follower
+    @users = current_user.followers
+  end
 
   private
   def user_params
