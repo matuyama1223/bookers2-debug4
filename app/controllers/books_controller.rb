@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   	if @book.update(book_params)
   		redirect_to @book, notice: "successfully updated book!"
   	else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
-  		
+
       render "edit"
     end
   end
@@ -50,6 +50,7 @@ class BooksController < ApplicationController
   	@book.destroy
   	redirect_to books_path, notice: "successfully delete book!"
   end
+
 
 
   private

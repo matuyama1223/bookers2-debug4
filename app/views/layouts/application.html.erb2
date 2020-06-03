@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers2 -debug</title>
+    <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,13 +11,12 @@
 
   <body>
     <!--ヘッダーの記述-->
-    <header class=>
+    <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
           <span>Bookers</span>
         </nav>
-        <!-- navbar-left 左寄せ　　　　　　navbar-right右寄せ　-->
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <!--if文でサインインとアウト時の表示を変更-->
@@ -45,12 +44,5 @@
     </div>
   </body>
 </html>
-
-
-
-
-
-
-
 
 

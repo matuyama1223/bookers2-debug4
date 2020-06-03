@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
 		following = current_user.follow(user)
 		if following.save
 			flash[:success] = 'ユーザーをフォローしました'
-			redirect_to users_path
+		redirect_to users_path
 	    else
 	      flash.now[:alert] = 'ユーザーのフォローに失敗しました'
 	      redirect_to users_path

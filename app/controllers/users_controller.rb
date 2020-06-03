@@ -34,13 +34,13 @@ class UsersController < ApplicationController
   def follower
     @users = current_user.followers
   end
-
+# user <%= form_for(@user) do |f| %>したときに３つのものしかもってこない(user_params)
   private
   def user_params
   	params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
-  #url直接防止　メソッドを自己定義してbefore_actionで発動。
+  #url直接防止　メソッドを自己定義してbefore_actionで発動。他の人ユーザーに見られないようにする   ＝＝違ったら  3行目
    def baria_user
   	unless params[:id].to_i == current_user.id
   		redirect_to user_path(current_user)

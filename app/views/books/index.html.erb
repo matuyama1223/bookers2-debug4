@@ -35,24 +35,9 @@
 					<td><%= book.body %></td>
 					<td>
 						<!--自分（ログインしているユーザ）が含まれているかをfavorited_by?メソッドで判定しています-->
-						<% if book.favorited_by?(current_user)%>
-							<li>
-								<%= link_to book_favorites_path(book),method: :delete do%>
-									<i class="fa fa-heart" aria-hidden="true" stle="color: red;"></i>
-								<%= book.favorites.count %> いいね
-								<% end %>
-							</li>
-						<% else %>
-							<li>
-								<%= link_to book_favorites_path(book),method: :post do %>
-									<i class="fa fa-heart-o" aria-hidden="true"></i>
-								<%= book.favorites.count %> いいね
-								<% end %>
-								<li>
-						</li>
-
-						<% end %>
-					</td>
+					<td id="book_<%= book.id %>">
+						<%= render 'favorite', book: book %></td>
+					</div>
 					<td> <a href="#comments">コメント数<%= book.book_comments.count %></td>
 				</tr>
 				<% end %>
