@@ -11,7 +11,9 @@ class User < ApplicationRecord
   has_many :favorites
 
 # userのbookがきえたら、同じく消えるdependentのコード
-
+has_many :entries
+has_many :direct_messages
+has_many :rooms, through: :entries
 
 # ↓フォロワーした　のつくりかた
 # ====================自分がフォローしているユーザーとの関連 ===================================

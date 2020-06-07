@@ -3,10 +3,28 @@ class UsersController < ApplicationController
 	before_action :baria_user, only: [:edit, :update]
 
   def show
-  	@user = User.find(params[:id])
-  	@books = @user.books
-  	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+    @current_user_entry = Entry.where(user_id: current_user.id)
+    @user_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_user_entry.each do |cu|
+        @user_entry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
+
 
   def index
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。

@@ -8,6 +8,22 @@
 <h2>New book</h2>
 <%= render 'books/newform', book: @book %>
 </div>
+
+
+
+<% unless @user.id == current_user.id %>
+  <% if @isRoom == true %>
+    <%= link_to "チャットへ", room_path(@roomId) %>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <h2>Books</h2>
 <!--books一覧 -->
 <div class="col-xs-9">
