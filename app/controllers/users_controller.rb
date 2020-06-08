@@ -27,9 +27,14 @@ class UsersController < ApplicationController
 
 
   def index
+    if params[:search].present?
+      @users = User.where(name: params[:search])
+    else
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
+  end
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
   end
+
   def edit
   	@user = User.find(params[:id])
   end

@@ -56,4 +56,12 @@ has_many :rooms, through: :entries
   validates :name, presence:true, length: {maximum: 20, minimum: 2}
   validates :introduction,length:{maximum:50}
 
+def self.search(search)
+    if search
+      User.where(['name LIKE ?', "%#{search}%"])
+    else
+      User.all
+    end
+end
+
 end
