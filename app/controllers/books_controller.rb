@@ -11,7 +11,11 @@ class BooksController < ApplicationController
   end
 
   def index
+    if params[:search].present?
+      @books = Book.where(title: params[:search])
+    else
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
+  end
     @book = Book.new
   end
 

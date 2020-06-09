@@ -1,6 +1,10 @@
 <div class="container">
 <div class="row">
 	<div class="col-xs-3">
+	<%= form_with url:books_path,method: :get,data: {remote: false} do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "検索", :title => nil %>
+    <%end%>
 
 		<h2>User info</h2>
 		<%= render 'users/profile', user: current_user %>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-
+#検索機能
   def index
     if params[:search].present?
       @users = User.where(name: params[:search])
