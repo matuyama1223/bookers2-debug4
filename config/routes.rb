@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'rooms/show'
 	devise_for :users
 	root  'home#top'
+	get 'favorites/index'
 	get 'home/about' => "home#about"
 	get 'users/follows'=>"users#follows"
 	get 'users/follower'=>"users#follower"

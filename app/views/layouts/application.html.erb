@@ -25,6 +25,7 @@
             <li><%= link_to ' Home', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
             <li><%= link_to ' users', users_path, class: 'glyphicon glyphicon-user users' %></li>
             <li><%= link_to ' books', books_path, class: 'glyphicon glyphicon-book books' %></li>
+            <li><%= link_to ' いいね', favorites_index_path ,class: "glyphicon glyphicon-heart"%></li>
             <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
             <% else %>
             <li><%= link_to ' Home', root_path, class: 'glyphicon glyphicon-home home' %></li>

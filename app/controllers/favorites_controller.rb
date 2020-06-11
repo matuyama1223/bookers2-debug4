@@ -1,4 +1,8 @@
 class FavoritesController < ApplicationController
+	def index
+		@favorite_books = current_user.favorite_books
+	end
+
 	# 投稿
 	def create
 		@book = Book.find(params[:book_id])
