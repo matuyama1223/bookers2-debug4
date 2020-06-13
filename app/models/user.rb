@@ -10,8 +10,11 @@ class User < ApplicationRecord
   has_many :book_comments,dependent: :destroy
   has_many :favorites
 
-has_many :favorite_books,through: :favorites,source: :book
+enum sex: { man: 1, woman: 2 }
 
+#いいね一覧＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+has_many :favorite_books,through: :favorites,source: :book
+#================================================================
 
 
 # userのbookがきえたら、同じく消えるdependentのコード
