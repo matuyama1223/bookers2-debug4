@@ -3,8 +3,11 @@
   <div class="col-xs-3">
 <%= form_with url:users_path,method: :get,data: {remote: false} do %>
     <%= text_field_tag :search %>
+    
     <%= submit_tag "users検索", :name => nil %>
     <%end%>
+
+
 
 <h2>User info</h2>
 <%= render 'users/profile', user: current_user %>
@@ -13,8 +16,9 @@
 <h2>New book</h2>
 <%= render 'books/newform', book: @book %>
 
-
-
+<% #User.each do |genre|%>
+<h5><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></h5>
+<%#end%>
 </div>
 	<div class="col-xs-9">
 <h2>Users</h2>
@@ -39,12 +43,20 @@
 
 			<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
 			<div class="field">
-			<td></td>
+			<td><%=user.sex_before_type_cast %></td>
+			<td><%=user.sex%></td>
+			<% #user::sex.each do |genre|%>
+			<td><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></td>
+			<%#end%>
+
 
   </div>
 		</tr>
 		<% end %>
 	</tbody>
+	<%= link_to :back do %>
+  <button>戻る</button>
+<% end %>
 </table>
   </div>
  </div>

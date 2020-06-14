@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
 enum sex: { man: 1, woman: 2 }
 
+
+
 #いいね一覧＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 has_many :favorite_books,through: :favorites,source: :book
 #================================================================

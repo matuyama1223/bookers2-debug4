@@ -31,9 +31,11 @@ class UsersController < ApplicationController
       @users = User.where(name: params[:search])
     else
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
+     @q = User.ransack(params[:q])
+  @results = @q.result(distinct: true)
   end
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
-  end
+end
 
   def edit
   	@user = User.find(params[:id])
@@ -60,7 +62,7 @@ class UsersController < ApplicationController
 # user <%= form_for(@user) do |f| %>したときに３つのものしかもってこない(user_params)
   private
   def user_params
-  	params.require(:user).permit(:name, :introduction, :profile_image)
+  	params.require(:user).permit(:name, :introduction, :profile_image, :sex)
   end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。他の人ユーザーに見られないようにする   ＝＝違ったら  3行目
