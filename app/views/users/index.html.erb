@@ -2,11 +2,20 @@
  <div class="row">
   <div class="col-xs-3">
 <%= form_with url:users_path,method: :get,data: {remote: false} do %>
+
     <%= text_field_tag :search %>
-    
     <%= submit_tag "users検索", :name => nil %>
     <%end%>
 
+
+<div>
+<%= form_tag(users_path, method: "get") do %>
+<%= label_tag :name, "名前" %><%= text_field_tag :name, params[:name] %>
+<%= label_tag :name, "性別" %>
+<%= select_tag :gender, options_for_select(User.genders), include_blank: true %>
+<%= submit_tag "検索" %>
+<% end %>
+</div>
 
 
 <h2>User info</h2>
@@ -44,7 +53,7 @@
 			<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
 			<div class="field">
 			<td><%=user.sex_before_type_cast %></td>
-			<td><%=user.sex%></td>
+			<td><%#=user.gender%></td>
 			<% #user::sex.each do |genre|%>
 			<td><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></td>
 			<%#end%>

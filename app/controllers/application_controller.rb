@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email ,:sex])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email ,:sex ,:gender])
     #sign_upの際にnameのデータ操作を許。追加したカラム。
   end
 end

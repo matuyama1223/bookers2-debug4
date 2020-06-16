@@ -10,8 +10,14 @@ class User < ApplicationRecord
   has_many :book_comments,dependent: :destroy
   has_many :favorites
 
-enum sex: { man: 1, woman: 2 }
+enum  gender: { unknown: 0, male: 1}
 
+scope :get_by_name, ->(name) {
+where("name like ?", "%#{name}%")
+}
+scope :get_by_gender, ->(gender) {
+where(gender: gender)
+}
 
 
 #いいね一覧＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -70,9 +76,11 @@ has_many :rooms, through: :entries
 def self.search(search)
     if search
       User.where(['name LIKE ?', "%#{search}%"])
+
     else
       User.all
     end
 end
+
 
 end

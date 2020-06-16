@@ -29,6 +29,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirm" %>
   </div>
   <div class="field">
+    <%#= f.label :gender %><br />
+    <%#= f.label :man %>
+    <%#= f.radio_button :genders, :man %>
+    <%#= f.label :woman %>
+    <%#= f.radio_button :genders, :woman %>
+  </div>
+  <div class="field">
     <%= f.label :sex %><br />
     <%= f.label :man %>
     <%= f.radio_button :sex, :man %>
