@@ -68,7 +68,7 @@ end
 # user <%= form_for(@user) do |f| %>したときに３つのものしかもってこない(user_params)
   private
   def user_params
-  	params.require(:user).permit(:name, :introduction, :profile_image, :gender)
+  	params.require(:user).permit(:name, :introduction, :profile_image, :postcode, :prefecture_name, :address_city, :address_street, :address_building)
   end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。他の人ユーザーに見られないようにする   ＝＝違ったら  3行目

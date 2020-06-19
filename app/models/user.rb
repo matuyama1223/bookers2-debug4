@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,:validatable
 
 
+
   attachment :profile_image, destroy: false
   has_many :books,dependent: :destroy
   has_many :book_comments,dependent: :destroy
@@ -82,5 +83,17 @@ def self.search(search)
     end
 end
 
+
+
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+
+  def prefecture_name
+      JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+
+  def prefecture_name=(prefecture_name)
+      self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
 
 end
