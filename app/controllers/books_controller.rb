@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
   end
     @book = Book.new
+
   end
 
 
@@ -55,7 +56,10 @@ class BooksController < ApplicationController
   	redirect_to books_path, notice: "successfully delete book!"
   end
 
-
+def search
+  @books = Book.search(params[:search])
+ 
+end
 
   private
 

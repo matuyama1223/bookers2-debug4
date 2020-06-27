@@ -8,6 +8,7 @@
     </ul>
   </div>
 <% end %>
+
 <%= form_for(book) do |f| %>
 	<div class="field row">
 		<%= f.label :title %>
@@ -18,7 +19,7 @@
 		<%= f.label :Opinion %> <!-- ここを変更 -->
 		<%= f.text_area :body, class: "col-xs-12 book_body" %>
 	</div>
-
+<input class="number" max="5.0" min="0" name="rate" step="0.5" type="number" placeholder="評価(５段階評価)"/>
 	<div class="actions row">
 		<%= f.submit 'komennto', class: "btn btn-success col-xs-12" %>
 	</div>
