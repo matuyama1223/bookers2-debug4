@@ -1,11 +1,11 @@
 <% if book.favorited_by?(current_user) %>
 	<%= link_to book_favorites_path(book_id: book), method: :delete, remote: true do %>
 		<i class="glyphicon glyphicon-heart"></i>
-		<%= book.favorites.count %>いいね
+		<%= book.favorites.count %>いいねする
 	<% end %>
 <% else %>
 	<%= link_to book_favorites_path(book_id: book), method: :post, remote: true do %>
 		<i class="glyphicon glyphicon-heart-empty"></i>
-		<%= book.favorites.count %>いいね
+		<%= book.favorites.count %>いいねする
 	<% end %>
 <% end %>
