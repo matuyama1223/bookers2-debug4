@@ -22,6 +22,9 @@
           <ul class="nav navbar-nav navbar-right">
             <!--if文でサインインとアウト時の表示を変更-->
             <% if user_signed_in? %>
+
+
+            
             <li><%= link_to ' Home', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
             <li><%= link_to ' users', users_path, class: 'glyphicon glyphicon-user users' %></li>
             <li><%= link_to ' books', books_path, class: 'glyphicon glyphicon-book books' %></li>
