@@ -1,83 +1,83 @@
 <div class="container">
- <div class="row">
-  <div class="col-xs-3">
-<%= form_with url:users_path,method: :get,data: {remote: false} do %>
+	<div class="row">
+		<div class="col-xs-3">
+			<%= form_with url:users_path,method: :get,data: {remote: false} do %>
 
-    <%= text_field_tag :search %>
-    <%= submit_tag "users検索", :name => nil %>
-    <%end%>
-
-
-<div>
-<%= form_tag(users_path, method: "get") do %>
-<%= label_tag :name, "名前" %><%= text_field_tag :name, params[:name] %>
-<%= label_tag :name, "性別" %>
-<%= select_tag :gender, options_for_select(User.genders), include_blank: true %>
-<%= submit_tag "検索" %>
-<% end %>
-</div>
+			<%= text_field_tag :search %>
+			<%= submit_tag "users検索", :name => nil %>
+			<%end%>
 
 
-<h2>User info</h2>
-<%= render 'users/profile', user: current_user %>
-<!--メモ　右側の指定に注意。そこを間違えるとエラーが発生して表示されない -->
+			<div>
+				<%= form_tag(users_path, method: "get") do %>
+				<%= label_tag :name, "名前" %><%= text_field_tag :name, params[:name] %>
+				<%= label_tag :name, "性別" %>
+				<%= select_tag :gender, options_for_select(User.genders), include_blank: true %>
+				<%= submit_tag "検索" %>
+				<% end %>
+			</div>
 
-<h2>New book</h2>
-<%= render 'books/newform', book: @book %>
 
-<% #User.each do |genre|%>
-<h5><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></h5>
-<%#end%>
-</div>
-	<div class="col-xs-9">
-<h2>Users</h2>
-<!--users一覧 -->
-<table class="table">
-	<thead>
-		<tr>
-			<th>image</th>
-			<th>name</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
+			<h2>User info</h2>
+			<%= render 'users/profile', user: current_user %>
+			<!--メモ　右側の指定に注意。そこを間違えるとエラーが発生して表示されない -->
 
-	<tbody>
-		<% @users.each do |user| %>
-		<tr>
-			<td><%= attachment_image_tag(user, :profile_image, :fill, 60, 60, fallback: "no-image-mini.jpg") %></td>
-			<td><%= user.name%></td>
-			<td><%= link_to user.relationships.count, users_follows_path %>followsフォロー</td>
-			<td><%= user.reverse_of_relationships.count %>followerフォロワー</td>
-			<td><%= render 'relationships/follow_button',user: user %></td>
+			<h2>New book</h2>
+			<%= render 'books/newform', book: @book %>
 
-			<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
-			<div class="field">
-			<td><%=user.sex_before_type_cast %></td>
-			<td><%#=user.gender%></td>
-			<% #user::sex.each do |genre|%>
-			<td><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></td>
+			<% #User.each do |genre|%>
+			<h5><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></h5>
 			<%#end%>
+		</div>
+		<div class="col-xs-9">
+			<h2>Users</h2>
+			<!--users一覧 -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th>image</th>
+						<th>name</th>
+						<th colspan="3"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag(user, :profile_image, :fill, 60, 60, fallback: "no-image-mini.jpg") %></td>
+						<td><%= user.name%></td>
+						<td><%= link_to user.relationships.count, users_follows_path %>followsフォロー</td>
+						<td><%= user.reverse_of_relationships.count %>followerフォロワー</td>
+						<td><%= render 'relationships/follow_button',user: user %></td>
+
+						<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+						<div class="field">
+							<td><%=user.sex_before_type_cast %></td>
+							<td><%#=user.gender%></td>
+							<% #user::sex.each do |genre|%>
+							<td><%#= link_to genre, users_path(sex: sex) ,class:"btn btn-primary btn-xs"%></td>
+							<%#end%>
 
 
-  </div>
-		</tr>
-		<% end %>
-	</tbody>
-	<%= link_to :back do %>
-  <button>戻る</button>
-<% end %>
-</table>
-  </div>
- </div>
- </div>
+						</div>
+					</tr>
+					<% end %>
+				</tbody>
+				<%= link_to :back do %>
+				<button>戻る</button>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
 <!--users一覧 -->
 <td>
-<!-- トップに戻る -->
-<span id="back">
-      <a href="#">
-        <img src="assets/arrow.png" alt="">
-        <p>トップ</p>
-      </a>
-    </span>
-<!-- トップここまで -->
+	<!-- トップに戻る -->
+	<span id="back">
+		<a href="#">
+			<img src="assets/arrow.png" alt="">
+			<p>トップ</p>
+		</a>
+	</span>
+	<!-- トップここまで -->
 
