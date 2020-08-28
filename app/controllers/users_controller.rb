@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-	before_action :baria_user, only: [:edit, :update]
+  before_action :baria_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -26,22 +26,22 @@ class UsersController < ApplicationController
   end
 
 #検索機能
-  def index
-    if params[:search].present?
-      @users = User.where(name: params[:search])
+def index
+  if params[:search].present?
+    @users = User.where(name: params[:search])
 
-      if params[:name].present?
+    if params[:name].present?
       @users = @users.get_by_name params[:name]
-      end
+    end
     if params[:gender].present?
-    @users = @users.get_by_gender params[:gender]
+      @users = @users.get_by_gender params[:gender]
     end
 
-    else
+  else
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
   end
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
-end
+  end
 
   def edit
   	@user = User.find(params[:id])
@@ -66,16 +66,16 @@ end
     @users = current_user.followers
   end
 # user <%= form_for(@user) do |f| %>したときに３つのものしかもってこない(user_params)
-  private
-  def user_params
-  	params.require(:user).permit(:name, :introduction, :profile_image, :postcode, :prefecture_name, :address_city, :address_street, :address_building)
-  end
+private
+def user_params
+ params.require(:user).permit(:name, :introduction, :profile_image, :postcode, :prefecture_name, :address_city, :address_street, :address_building)
+end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。他の人ユーザーに見られないようにする   ＝＝違ったら  3行目
-   def baria_user
+  def baria_user
   	unless params[:id].to_i == current_user.id
   		redirect_to user_path(current_user)
   	end
-   end
+  end
 
 end
